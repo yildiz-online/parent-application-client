@@ -29,11 +29,11 @@
   <parent>
     <groupId>be.yildiz-games</groupId>
     <artifactId>parent-application</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
   </parent>
 
   <artifactId>parent-application-client</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <name>Yildiz Parent Application Client</name>
   <description>Project to hold the parent pom for all client application projects.</description>
@@ -69,6 +69,14 @@
   <packaging>pom</packaging>
   <inceptionYear>2018</inceptionYear>
 
+  <properties>
+    <version.launch4j>1.7.23</version.launch4j>
+    <jre.path>../jre</jre.path>
+    <executable.name>app</executable.name>
+    <splash.time>20</splash.time>
+    <icon.name>app.ico</icon.name>
+  </properties>
+
   <build>
     <plugins>
 	    <plugin>
@@ -76,13 +84,84 @@
         <artifactId>proguard-maven-plugin</artifactId>
         <version>2.0.14</version>
       </plugin>
-      <plugin>
-        <groupId>com.akathist.maven.plugins.launch4j</groupId>
-        <artifactId>launch4j-maven-plugin</artifactId>
-        <version>1.7.23</version>
-      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>client-linux64</id>
+      <activation>
+        <property>
+          <name>env</name>
+          <value>client-linux64</value>
+        </property>
+      </activation>
+      <properties>
+        <nativeEnv>linux64</nativeEnv>
+      </properties>
+    </profile>
+    <profile>
+      <id>client-win64</id>
+      <activation>
+        <property>
+          <name>env</name>
+          <value>win64</value>
+        </property>
+      </activation>
+      <properties>
+        <nativeEnv>win64</nativeEnv>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.akathist.maven.plugins.launch4j</groupId>
+            <artifactId>launch4j-maven-plugin</artifactId>
+            <version>${version.launch4j}</version>
+            <executions>
+              <execution>
+                <id>launch4j-win64</id>
+                <phase>package</phase>
+                <goals><goal>launch4j</goal></goals>
+
+                <configuration>
+                  <headerType>gui</headerType>
+                  <jar>${finalname}-assembly.jar</jar>
+                  <dontWrapJar>true</dontWrapJar>
+                  <outfile>${project.build.directory}/${executable.name}.exe</outfile>
+                  <classPath>
+                    <mainClass>${mainclass}</mainClass>
+                  </classPath>
+                  <icon>src/main/resources/${icon.name}</icon>
+                  <jre>
+                    <path>${jre.path}</path>
+                    <minVersion>${java.version}</minVersion>
+                    <bundledJre64Bit>true</bundledJre64Bit>
+                    <jdkPreference>preferJre</jdkPreference>
+                    <runtimeBits>64</runtimeBits>
+                  </jre>
+                  <splash>
+                    <file>src/main/resources/splash.bmp</file>
+                    <timeout>${splash.time}</timeout>
+                  </splash>
+                  <versionInfo>
+                    <fileVersion>${project.version}.0</fileVersion>
+                    <txtFileVersion>${project.version}</txtFileVersion>
+                    <fileDescription>${project.name}</fileDescription>
+                    <copyright>C</copyright>
+                    <productVersion>${project.version}.0</productVersion>
+                    <txtProductVersion>${project.version}.0</txtProductVersion>
+                    <productName>${project.name}</productName>
+                    <internalName>${executable.name}</internalName>
+                    <originalFilename>${executable.name}.exe</originalFilename>
+                  </versionInfo>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
 
