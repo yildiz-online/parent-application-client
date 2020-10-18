@@ -37,7 +37,7 @@
 
   <name>Yildiz Parent Application Client</name>
   <description>Project to hold the parent pom for all client application projects.</description>
-  <url>https://bitbucket.org/yildiz-engine-team/parent-application-client</url>
+  <url>https://github.com/yildiz-online/parent-application-client</url>
 
   <licenses>
     <license>
@@ -60,9 +60,9 @@
     <url>https://yildiz.atlassian.net</url>
   </issueManagement>
   <scm>
-    <connection>scm:git:https://bitbucket.org/yildiz-engine-team/parent-application-client</connection>
-    <developerConnection>scm:git:https://bitbucket.org/yildiz-engine-team/parent-application-client</developerConnection>
-    <url>https://bitbucket.org/yildiz-engine-team/parent-application-client</url>
+    <connection>scm:git:https://github.com/yildiz-online/parent-application-client</connection>
+    <developerConnection>scm:git:https://github.com/yildiz-online/parent-application-client</developerConnection>
+    <url>https://github.com/yildiz-online/parent-application-client</url>
   </scm>
 
 
