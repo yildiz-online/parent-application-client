@@ -70,7 +70,7 @@
   <inceptionYear>2018</inceptionYear>
 
   <properties>
-    <version.launch4j>1.7.25</version.launch4j>
+    <version.launch4j>2.1.0</version.launch4j>
     <jre.path>../jre</jre.path>
     <executable.name>app</executable.name>
     <splash.time>20</splash.time>
