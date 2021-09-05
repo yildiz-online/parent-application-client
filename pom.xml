@@ -70,7 +70,7 @@
   <inceptionYear>2018</inceptionYear>
 
   <properties>
-    <version.launch4j>2.1.1</version.launch4j>
+    <version.launch4j>2.1.2</version.launch4j>
     <jre.path>../jre</jre.path>
     <executable.name>app</executable.name>
     <splash.time>20</splash.time>
@@ -82,7 +82,7 @@
 	    <plugin>
         <groupId>com.github.wvengen</groupId>
         <artifactId>proguard-maven-plugin</artifactId>
-        <version>2.3.1</version>
+        <version>2.4.0</version>
       </plugin>
     </plugins>
   </build>
